@@ -5,10 +5,11 @@ import './Carousel.css'
 import useFetchPics from "../hooks/PicHooks";
 import type { Pic } from "../types/pic";
 import {sliderSettings} from "../config/sliderSettings";
+import ApiStatus from "../ApiStatus";
 
 const Carousel = () => {
 
-  const { data: pics } = useFetchPics();  
+  const { data: pics, status, isSuccess } = useFetchPics();  
 
   return (
     <div className="slider-container display">
