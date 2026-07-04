@@ -1,12 +1,10 @@
 import './App.css'
 
-function Nav() {
-  
+const Nav = () => {  
 
   return (
-    <>
-<nav>
-  <div className="wrap">
+    <nav>
+    <div className="wrap">
     <div className="brandmark">Bent Entertainment</div>
     <div className="navlinks">
       <a href="#itinerary">Upcoming shows</a>
@@ -16,10 +14,9 @@ function Nav() {
       <a href="#band">The players</a>
     </div>
     <a className="navcta" href="#book">Book our bands</a>
-  </div>
-</nav>
-    </>
+    </div>
+    </nav>    
   )
 }
 
-export default Nav
+export default Nav;
