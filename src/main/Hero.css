@@ -1,0 +1,10 @@
+.carousel
+  {
+    height: 600px;
+    opacity: 0.8;
+  }
+
+  
+  .slick-slide img {
+    display: inline !important;
+}

@@ -373,19 +373,4 @@
   }
   footer .fmark{ color:var(--gold); }
 
-  .carousel
-  {
-    height: 500px;
-    opacity: 0.8;
-    text-align: center !important;
-  }
-
-  .centered image
-  {
-    text-align: right !important;
-    margin: 0 auto;
-  }
-
-  .slick-slide img {
-    display: inline !important;
-}
+  

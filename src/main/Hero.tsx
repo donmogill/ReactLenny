@@ -1,8 +1,6 @@
-import './App.css'
-import logo from "./don.JPEG"
+import './Hero.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from "react";
 import Slider from "react-slick"
 
 function Hero() {
@@ -26,7 +24,7 @@ const settings = {
   <div className="sunburst inner"></div>
   <div className="hero-content">
     <h1 className="hero-title display">Bent Entertainment</h1>
-    <p className="hero-sub">Classic rock and country bands available for all occasions.</p>
+    <p className="hero-sub">Oustanding bands available for all occasions.</p>
     <div className="slider-container display">
         <Slider {...settings}>
         <div className="centered">
