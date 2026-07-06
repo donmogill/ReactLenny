@@ -4,7 +4,19 @@
     opacity: 0.8;
   }
 
+.carouselThumbnail
+  {
+    height: 200px;
+    width: auto;
+    object-fit: cover;
+  }
   
-  .slick-slide img {
+.slick-slide img {
     display: inline !important;
 }
+
+.slider-container
+{
+  margin-bottom: 50px;
+}
+

@@ -373,4 +373,10 @@
   }
   footer .fmark{ color:var(--gold); }
 
-  
+  .table .my-custom-row > * {
+  --bs-table-bg: #241220; /* Your custom color */
+  --bs-table-color: white; /* Your custom text color */
+  background-color: var(--bs-table-bg);
+  color: var(--bs-table-color);
+  text-align: left;
+}

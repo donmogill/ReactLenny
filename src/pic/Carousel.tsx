@@ -11,8 +11,11 @@ const Carousel = () => {
 
   const { data: pics, status, isSuccess } = useFetchPics();  
 
+  if (!isSuccess) 
+    return <ApiStatus status={status} />;
+
   return (
-    <div className="slider-container display">
+    <div className="slider-container">
         <Slider {...sliderSettings}>
         {pics && pics.map((pic: Pic) => (
           <div key={pic.id} className="centered">

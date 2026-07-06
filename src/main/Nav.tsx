@@ -13,9 +13,11 @@ const Nav = () => {
       <a href="#itinerary">The Bands</a>
       <a href="#set">The set</a>
       <a href="#gallery">On the road</a>
-      <a href="#band">The players</a>
     </div>
     <a className="navcta" href="#book">Book our bands</a>
+    <div className="navlinks">
+      <a href="#band">Login</a>
+    </div>
     </div>
     </nav>    
   )
