@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { useMutation } from '@tanstack/react-query';
-import config from '../config/config';
 
 import { useUploadPic } from "../hooks/PicHooks";
 
@@ -9,29 +7,6 @@ const PicAdd = () => {
   const [file, setFile] = useState(null);
 
   const uploadMutation = useUploadPic();
-
-  /*
-  const uploadMutation = useMutation({
-    mutationFn: async (fileToUpload) => {
-      const formData = new FormData();
-
-      formData.append('file', fileToUpload);
-
-      
-      const response = await fetch(`${config.baseApiUrl}/api/Upload`, {
-        method: 'POST',
-        body: formData        
-      });
-
-      if (!response.ok) throw new Error('Upload failed');
-      return response.json();
-      
-    },
-    onSuccess: (data) => {
-      console.log('File uploaded successfully:', data);
-    },
-  });
-  */
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);

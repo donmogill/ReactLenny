@@ -14,12 +14,7 @@ const PicForm   = ({ pic, submitHandler }: Args) => {
     submitHandler(picState);
   };
 
-  const onFileSelected = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-    e.preventDefault();
-    e.target.files && e.target.files.length > 0 && 
-    setPicState({ ...picState, 
-        filename: URL.createObjectURL(e.target.files[0]) });
-  }
+ 
 
   return (
     <form className="mt-2">
