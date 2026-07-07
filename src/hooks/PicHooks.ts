@@ -26,6 +26,33 @@ const useAddPic = () => {
   });
 };
 
+const useUploadPic = () => {
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: async (fileToUpload) => {
+        const formData = new FormData();
+
+        formData.append('file', fileToUpload);
+
+      
+        const response = await fetch(`${config.baseApiUrl}/api/Upload`, {
+            method: 'POST',
+            body: formData        
+        });
+
+        if (!response.ok) throw new Error('Upload failed');
+        return response.json();
+      
+        },
+        onSuccess: (data) => {
+            console.log('File uploaded successfully:', data);
+            queryClient.invalidateQueries({ queryKey: ["pics"] });
+            navigate("/pics");
+        },
+    });
+};
+
 const useDeletePic = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -39,5 +66,7 @@ const useDeletePic = () => {
     });
 };
 
+
+
 export default useFetchPics;
-export { useAddPic, useDeletePic };   
+export { useAddPic, useDeletePic, useUploadPic };   
