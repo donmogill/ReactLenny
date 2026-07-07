@@ -1,23 +1,52 @@
-import { useAddPic } from "../hooks/PicHooks";
-import type { Pic } from "../types/pic";
-import PicForm from "./PicForm";
+import React, { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import config from '../config/config';
 
 const PicAdd = () => {
-    const addPicMutation = useAddPic();
+  const [file, setFile] = useState(null);
 
-    const pic: Pic = {
-        id: 0,
-        filename: "",
-        displayOrder: 0
-    };
+  const uploadMutation = useMutation({
+    mutationFn: async (fileToUpload) => {
+      const formData = new FormData();
 
-    return (
-        <PicForm
-            pic={pic}
-            submitHandler={(pic: Pic) => addPicMutation.mutate(pic)}
-        />
-    );
-    
-}
+      formData.append('file', fileToUpload);
+
+      
+      const response = await fetch(`${config.baseApiUrl}/api/Upload`, {
+        method: 'POST',
+        body: formData        
+      });
+
+      if (!response.ok) throw new Error('Upload failed');
+      return response.json();
+      
+    },
+    onSuccess: (data) => {
+      console.log('File uploaded successfully:', data);
+    },
+  });
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = () => {
+    if (file) uploadMutation.mutate(file);
+  };
+
+  return (
+    <div>
+      <input type="file" onChange={handleFileChange} />
+      <div className="mt-2">
+        <img src={file ? URL.createObjectURL(file) : ''} className="carouselThumbnail" alt="Preview" />
+      </div>
+      <button onClick={handleUpload} disabled={uploadMutation.isPending}>
+        {uploadMutation.isPending ? 'Uploading...' : 'Upload File'}
+      </button>
+      {uploadMutation.isError && <p>Error uploading file.</p>}
+      {uploadMutation.isSuccess && <p>Upload complete!</p>}
+    </div>
+  );
+};
 
 export default PicAdd;

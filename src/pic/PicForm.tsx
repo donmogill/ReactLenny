@@ -14,6 +14,13 @@ const PicForm   = ({ pic, submitHandler }: Args) => {
     submitHandler(picState);
   };
 
+  const onFileSelected = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+    e.preventDefault();
+    e.target.files && e.target.files.length > 0 && 
+    setPicState({ ...picState, 
+        filename: URL.createObjectURL(e.target.files[0]) });
+  }
+
   return (
     <form className="mt-2">
     <div className="form-group">
@@ -28,6 +35,18 @@ const PicForm   = ({ pic, submitHandler }: Args) => {
           }
         />
     </div>        
+    <div className="form-group mt-2">
+        <label htmlFor="image">Image</label>
+        <input
+          id="image"
+          type="file"
+          className="form-control"
+          onChange={onFileSelected}
+        />
+      </div>
+      <div className="mt-2">
+        <img src={picState.filename} className="carouselThumbnail" alt="Preview" />
+      </div>
     <button
         className="btn btn-primary mt-2"
         disabled={!picState.filename}

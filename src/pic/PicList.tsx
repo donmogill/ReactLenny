@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ApiStatus from "../ApiStatus";
 import useFetchPics, { useDeletePic } from "../hooks/PicHooks";
 import "bootstrap/dist/css/bootstrap.min.css";
+import config from "../config/config";
 
 const PicList = () => {
     const { data: pics, status, isSuccess } = useFetchPics(); 
@@ -33,7 +34,7 @@ const PicList = () => {
                 <tr  className="my-custom-row" key={p.id} >
                     <td>{p.filename}</td>
                     <td>{p.displayOrder}</td>
-                    <td><img src={`./${p.filename}`} className="carouselThumbnail" alt={p.filename} /></td>
+                    <td><img src={`${config.baseApiUrl}/Uploads/${p.filename}`} className="carouselThumbnail" alt={p.filename} /></td>
                     <td>
                         <button                          
                             className="btn btn-danger"

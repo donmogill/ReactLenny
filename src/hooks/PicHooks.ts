@@ -3,6 +3,7 @@ import config from "../config/config";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError, type AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
+import type Problem from "../types/problem";
 
 const useFetchPics = () => {
     return useQuery<Pic[], AxiosError>({
@@ -14,16 +15,15 @@ const useFetchPics = () => {
 };
 
 const useAddPic = () => {
-    const navigate = useNavigate();
-    const queryClient = useQueryClient();
-    return useMutation<AxiosResponse, AxiosError, Pic>({
-        mutationFn: (p: Pic) => axios.post(`${config.baseApiUrl}/pics`, p),     
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: ["pics"] });
-            navigate("/pics");
-        }
-    });
+  const queryClient = useQueryClient();
+  const nav = useNavigate();
+  return useMutation<AxiosResponse, AxiosError<Problem>, Pic>({
+    mutationFn: (h) => axios.post(`${config.baseApiUrl}/pics`, h),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["pics"] });
+      nav("/");
+    },
+  });
 };
 
 const useDeletePic = () => {
