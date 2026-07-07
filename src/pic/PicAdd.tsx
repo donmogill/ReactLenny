@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+
 import { useMutation } from '@tanstack/react-query';
 import config from '../config/config';
+
+import { useUploadPic } from "../hooks/PicHooks";
 
 const PicAdd = () => {
   const [file, setFile] = useState(null);
 
+  const uploadMutation = useUploadPic();
+
+  /*
   const uploadMutation = useMutation({
     mutationFn: async (fileToUpload) => {
       const formData = new FormData();
@@ -25,6 +31,7 @@ const PicAdd = () => {
       console.log('File uploaded successfully:', data);
     },
   });
+  */
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
