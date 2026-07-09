@@ -5,6 +5,11 @@ import axios, { AxiosError, type AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import type Problem from "../types/problem";
 
+interface Item {
+  id: number;
+  filename: string;
+  displayOrder: number;
+}
 
 const useFetchPics = () => {
     return useQuery<Pic[], AxiosError>({
@@ -14,6 +19,45 @@ const useFetchPics = () => {
         
     });
 };  
+
+  // 3. Define reorderMutation to persist new order to database
+  const useReorderMutation = () => {
+    const queryClient = useQueryClient();
+    const queryKey = ['items'];
+    
+    return useMutation({
+    mutationFn: async (newOrder: Item[]) => {
+
+      const ids = newOrder.map(i => i.id);
+      return fetch(`${config.baseApiUrl}/api/pics/reorder`, {
+        method: 'POST',
+        body: JSON.stringify(ids),
+        headers: {
+          'Content-Type': 'application/json', // 👈 REQUIRED
+          'Accept': 'application/json',
+        },
+      });
+    },
+    // Optimistic Update: instantly update React Query cache if a background refetch happens
+    onMutate: async (newOrder) => {
+      await queryClient.cancelQueries({ queryKey });
+      const previousItems = queryClient.getQueryData<Item[]>(queryKey);
+      queryClient.setQueryData(queryKey, newOrder);
+      return { previousItems };
+    },
+    // Rollback local and cached state if server update fails
+    onError: (err, newOrder, context) => {
+      if (context?.previousItems) {
+        queryClient.setQueryData(queryKey, context.previousItems);
+        //setLocalItems(context.previousItems);
+      }
+    },
+    // Always refetch to ensure alignment with the server truth
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey });
+    },
+  });
+  };
   
 
 
@@ -72,4 +116,4 @@ const useDeletePic = () => {
 
 
 export default useFetchPics;
-export { useAddPic, useDeletePic, useUploadPic };   
+export { useAddPic, useDeletePic, useUploadPic, useReorderMutation };   
