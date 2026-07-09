@@ -28,7 +28,7 @@ const PicAdd = () => {
       </div> 
       <div className="uploadPic">
         <label>Click "Choose file" to select an image:</label><br/>
-        <input type="file" onChange={handleFileChange} />
+        <input type="file" className="custom-file-input" onChange={handleFileChange} />
       </div>  
       { file &&
       <div className="uploadPic">
@@ -39,7 +39,7 @@ const PicAdd = () => {
       <button className="btn btn-primary" onClick={handleUpload} disabled={uploadMutation.isPending}>
         {uploadMutation.isPending ? 'Uploading...' : 'Submit'}
       </button>
-      <button className="btn" onClick={returnToList}>Cancel</button>
+      <button className="btn btn-secondary" onClick={returnToList}>Cancel</button>
       {uploadMutation.isError && <p>Error uploading file.</p>}
       {uploadMutation.isSuccess && <p>Upload complete!</p>}
       </div>

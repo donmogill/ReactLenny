@@ -393,3 +393,41 @@
   font-size: 3em;
 }
 
+.center
+{
+  margin: 20px 0 0 410px;  
+}
+
+.btn-primary
+{
+  color:#241220
+}
+
+.btn-secondary
+{
+  background-color: #241220;
+  color:white
+}
+
+.btn-danger
+{
+  color: #241220;
+  background-color:wheat
+}
+
+.btn-danger:hover
+{
+  color:wheat;
+  background-color: #241220;
+}
+
+.custom-file-input::file-selector-button {
+  background-color: #241220;
+  color: white;
+  padding: 8px 16px;
+  border: solid 1px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: background-color 0.2s;
+}
+

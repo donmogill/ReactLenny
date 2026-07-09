@@ -30,20 +30,24 @@
 .reorderGroup
 {
   list-style-type: none;
-  margin-left: 200px;
   text-align: center;
+  margin-left:150px;
 }
 
 .reorderGroup li
 {
-  margin-top:40px;
+  margin-top:30px;
   border-top: solid 3px;
   border-bottom: solid 3px;
   padding:10px 0 10px 0;
   width:600px;
-  cursor: pointer;
+  cursor: pointer; 
   
-  
+}
+
+.reorderGroupDiv
+{
+  text-align: right;
 }
 
 .deleteImageButtonDiv
@@ -58,7 +62,7 @@
   margin-left:10px;
 }
 
-ReorderTitle
+.padtop10
 {
-
+  padding: 40px 0 0 60px;
 }
