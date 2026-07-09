@@ -11,6 +11,13 @@
     object-fit: cover;
   }
   
+.dragableImage
+  {
+    height: auto;
+    width: 300px;
+    object-fit: cover;
+  }
+    
 .slick-slide img {
     display: inline !important;
 }
@@ -20,3 +27,38 @@
   margin-bottom: 50px;
 }
 
+.reorderGroup
+{
+  list-style-type: none;
+  margin-left: 200px;
+  text-align: center;
+}
+
+.reorderGroup li
+{
+  margin-top:40px;
+  border-top: solid 3px;
+  border-bottom: solid 3px;
+  padding:10px 0 10px 0;
+  width:600px;
+  cursor: pointer;
+  
+  
+}
+
+.deleteImageButtonDiv
+{
+  margin-top:5px;
+  
+  text-align: right;
+}
+
+.deleteImageButton
+{
+  margin-left:10px;
+}
+
+ReorderTitle
+{
+
+}

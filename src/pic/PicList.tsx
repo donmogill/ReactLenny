@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Reorder } from 'motion/react'; // Ensure you are importing from motion/react
 import config from '../config/config';
 import useFetchPics, { useReorderMutation } from '../hooks/PicHooks';
@@ -10,7 +9,7 @@ interface Item {
   displayOrder: number;
 }
 
-export function PicList() {
+const PicList = () => {
   
   // 1. Fetch data from server
   const { data: serverItems = [] } = useFetchPics();
@@ -41,10 +40,13 @@ export function PicList() {
   };
 
   return (
+    <>
+    <h1>Move images vertically to reorder them on the from page</h1>
     <Reorder.Group 
       values={localItems} 
       onReorder={handleReorder}
       as="ul"
+      className="reorderGroup"
     >
       {localItems.map((item) => (
         <Reorder.Item 
@@ -52,12 +54,19 @@ export function PicList() {
           value={item}
           onDragEnd={handleDragEnd} // Saves to DB only when mouse/finger is released
         >
-          
+          <div>
+            
+          <div className="">
           <img draggable={false} src={`${config.baseApiUrl}/Uploads/${item.filename}`} className="carouselThumbnail" alt={item.filename} />
-          <span>  move me</span>
+          </div>
+          <div className="deleteImageButtonDiv"></div>
+          <span>{item.filename}</span>
+          <button className="deleteImageButton">Delete</button> 
+          </div>
         </Reorder.Item>
       ))}
     </Reorder.Group>
+    </>
   );
 }
 
