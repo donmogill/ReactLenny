@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Reorder } from 'motion/react'; // Ensure you are importing from motion/react
 import config from '../config/config';
+import useFetchPics from '../hooks/PicHooks';
 
 interface Item {
   id: number;
@@ -13,15 +14,16 @@ export function PicList() {
   const queryClient = useQueryClient();
   const queryKey = ['items'];
 
+  const { data: serverItems = [] } = useFetchPics();
 
   // 1. Fetch data from server
-  const { data: serverItems = [] } = useQuery<Item[]>({
-    queryKey,
-    queryFn: async () => {
-      const res = await fetch(`${config.baseApiUrl}/pics`);
-      return res.json();
-    },
-  });
+  // const { data: serverItems = [] } = useQuery<Item[]>({
+  //   queryKey,
+  //   queryFn: async () => {
+  //     const res = await fetch(`${config.baseApiUrl}/pics`);
+  //     return res.json();
+  //   },
+  // });
 
   // 2. Keep a local state copy for snappy drag animations
   const [localItems, setLocalItems] = useState<Item[]>(serverItems);
@@ -33,8 +35,8 @@ export function PicList() {
     }
   }, [serverItems]);
 
-  // 3. Define mutation to persist new order to database
-  const mutation = useMutation({
+  // 3. Define reorderMutation to persist new order to database
+  const reorderMutation = useMutation({
     mutationFn: async (newOrder: Item[]) => {
 
       const ids = newOrder.map(i => i.id);
@@ -72,9 +74,9 @@ export function PicList() {
     setLocalItems(newOrder);
   };
 
-  // 5. Fire mutation only when the user finishes dragging
+  // 5. Fire reorderMutation only when the user finishes dragging
   const handleDragEnd = () => {
-    mutation.mutate(localItems);
+    reorderMutation.mutate(localItems);
   };
 
   return (

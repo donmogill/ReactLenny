@@ -5,6 +5,7 @@ import axios, { AxiosError, type AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import type Problem from "../types/problem";
 
+
 const useFetchPics = () => {
     return useQuery<Pic[], AxiosError>({
         queryKey: ["pics"],
@@ -12,7 +13,9 @@ const useFetchPics = () => {
             axios.get(`${config.baseApiUrl}/pics`).then((resp) => resp.data),
         
     });
-};
+};  
+  
+
 
 const useAddPic = () => {
   const queryClient = useQueryClient();
