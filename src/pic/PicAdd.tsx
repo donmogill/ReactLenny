@@ -1,25 +1,36 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useUploadPic } from "../hooks/PicHooks";
 import { useNavigate } from 'react-router-dom';
 
 const PicAdd = () => {
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [objectUrl, setObjectUrl] = useState<string>();
 
   const navigate = useNavigate();
 
   const uploadMutation = useUploadPic();
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setObjectUrl(URL.createObjectURL(selectedFile));
+    }
+  };  
 
   const handleUpload = () => {
-    if (file) uploadMutation.mutate(file);
+    if (file)
+    {
+        uploadMutation.mutate(file);
+        URL.revokeObjectURL(objectUrl ?? "");         
+    } 
   };
 
   const returnToList = () => {
     navigate("/pics");
   }
+
+  
 
   return (
     <div>
@@ -32,7 +43,7 @@ const PicAdd = () => {
       </div>  
       { file &&
       <div className="uploadPic">
-        <img src={file ? URL.createObjectURL(file) : ''} className="carouselThumbnail" alt="Preview" />
+        <img src={ objectUrl } className="carouselThumbnail" alt="Preview" />
       </div>
       }
       <div className="uploadPic navlinks">

@@ -77,7 +77,7 @@ const useUploadPic = () => {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
     return useMutation({
-        mutationFn: async (fileToUpload) => {
+        mutationFn: async (fileToUpload:File) => {
         const formData = new FormData();
 
         formData.append('file', fileToUpload);
