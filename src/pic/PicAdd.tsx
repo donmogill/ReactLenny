@@ -5,7 +5,7 @@ import PicUpload from './PicUpload';
 
 const PicAdd = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [objectUrl, setObjectUrl] = useState<string>();
+  const [objectUrl, setObjectUrl] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
