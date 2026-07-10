@@ -27,10 +27,8 @@ const PicAdd = () => {
   };
 
   const returnToList = () => {
-    navigate("/pics");
-  }
-
-  
+     navigate("/pics");
+  }  
 
   return (
     <div>

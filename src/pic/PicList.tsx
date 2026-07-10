@@ -43,7 +43,7 @@ const PicList = () => {
   return (
     <div className="wrap">
     <h1 className="wrap padtop10"> Move images vertically to reorder them on the from page</h1>
-    <Link to="/pic/add" className="btn center">Add Picture</Link>
+    <Link to="/pic/add" className="btn center">Add Picture</Link>    
     <Reorder.Group 
       values={localItems} 
       onReorder={handleReorder}
