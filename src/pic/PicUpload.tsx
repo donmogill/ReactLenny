@@ -2,9 +2,9 @@ import { UseMutationResult } from "@tanstack/react-query";
 
 type Args = {
   objectUrl:string | undefined;
-  file: File | undefined;
+  file: File | null;
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleUpload: (file:File) => void;
+  handleUpload: (file:File | null) => void;
   returnToList: () => void;
   uploadMutation: UseMutationResult<File, Error, File, unknown>;
 };

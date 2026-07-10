@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import PicUpload from './PicUpload';
 
 const PicAdd = () => {
-  const [file, setFile] = useState<File | undefined>();
+  const [file, setFile] = useState<File | null>(null);
   const [objectUrl, setObjectUrl] = useState<string>();
 
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const PicAdd = () => {
     }
   };  
 
-  const handleUpload = (file:File | undefined) => {
+  const handleUpload = (file:File | null) => {
     if (file)
     {
         uploadMutation.mutate(file);
