@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useUploadPic } from "../hooks/PicHooks";
 import { useNavigate } from 'react-router-dom';
+import PicUpload from './PicUpload';
 
 const PicAdd = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<File | undefined>();
   const [objectUrl, setObjectUrl] = useState<string>();
 
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const PicAdd = () => {
     }
   };  
 
-  const handleUpload = () => {
+  const handleUpload = (file:File | undefined) => {
     if (file)
     {
         uploadMutation.mutate(file);
@@ -31,28 +32,14 @@ const PicAdd = () => {
   }  
 
   return (
-    <div>
-      <div className="uploadPicTop">
-        Add an image to the front page of the website...
-      </div> 
-      <div className="uploadPic">
-        <label>Click "Choose file" to select an image:</label><br/>
-        <input type="file" className="custom-file-input" onChange={handleFileChange} />
-      </div>  
-      { file &&
-      <div className="uploadPic">
-        <img src={ objectUrl } className="carouselThumbnail" alt="Preview" />
-      </div>
-      }
-      <div className="uploadPic navlinks">
-      <button className="btn btn-primary" onClick={handleUpload} disabled={uploadMutation.isPending}>
-        {uploadMutation.isPending ? 'Uploading...' : 'Submit'}
-      </button>
-      <button className="btn btn-secondary" onClick={returnToList}>Cancel</button>
-      {uploadMutation.isError && <p>Error uploading file.</p>}
-      {uploadMutation.isSuccess && <p>Upload complete!</p>}
-      </div>
-    </div>
+    <PicUpload 
+      objectUrl = {objectUrl} 
+      file={file} 
+      handleFileChange = {handleFileChange} 
+      handleUpload = {handleUpload} 
+      returnToList = {returnToList}
+      uploadMutation = {uploadMutation}
+    />
   );
 };
 
