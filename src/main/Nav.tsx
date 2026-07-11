@@ -9,7 +9,7 @@ const Nav = () => {
     <div className="wrap">
     <div className="brandmark" onClick={ () => nav("/")}>Bent Entertainment </div>
     <div className="navlinks">
-        <Link to="/itinerary">Upcoming shows</Link>
+        <Link to="/upcomingShows">Upcoming shows</Link>
       <a href="#itinerary">The Bands</a>
       <a href="#set">The set</a>
       <a href="#gallery">On the road</a>
