@@ -1,13 +1,41 @@
-const UpcomingShow = () => {
+import { useDeleteShow } from "../hooks/ShowHooks";
+import { Show } from "../types/show";
+import TimeConverter from "./TimeConverter";
+
+type Args = {
+  show:Show,
+  user:string|undefined
+  };
+
+const UpcomingShow = ({show, user}:Args) => {
+
+    const deleteShowMutation = useDeleteShow();
+
+    const date = new Date(show.date);
+    const niceDate = date.toLocaleDateString('en-US');
+
+    const niceTime = TimeConverter(show.time)
+
     return (
-        <div className="stop">
-                <span className="stop-date mono">Jul 11, 2026</span>
+        <>
+        <div className={user == "admin" ? "stop stopWithDelete" : "stop"} key={show.id}>
+                <span className="stop-date mono">{niceDate} {niceTime} </span>
                 <div className="stop-info">
-                <span className="venue">The Hive</span>
-                <span className="note">3452 Tapo Cyn Blvd., Simi Valley</span>
+                <span className="venue">{show.venue.name}</span>
+                <span className="note">{show.venue.address}</span>
                 </div>
                 <span className="stop-tag">No cover!</span>
+                {user == "admin" && 
+                    <button 
+                        className="deleteImageButton btn-danger"
+                        onClick={() => {
+                                if (window.confirm("Are you sure you want to delete this show?"))
+                                    deleteShowMutation.mutate(show);                            
+                            }}>
+                        Delete</button>
+                }
         </div>
+        </>
     )
 }
 
