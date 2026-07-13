@@ -12,16 +12,13 @@ const UpcomingShow = ({show, user}:Args) => {
 
     const deleteShowMutation = useDeleteShow();
     const nav = useNavigate();
-
-    const date = new Date(show.date);
-    const niceDate = date.toLocaleDateString('en-US');
-
+    
     const niceTime = TimeConverter(show.time)
 
     return (
         <>
         <div className={user == "admin" ? "stop stopWithDelete" : "stop"} key={show.id}>
-                <span className="stop-date mono">{niceDate} {niceTime} </span>
+                <span className="stop-date mono">{show.date} {niceTime} </span>
                 <div className="stop-info">
                 <span className="venue">{show.venue && show.venue.name}</span>
                 <span className="note">{show.venue && show.venue.address}</span>

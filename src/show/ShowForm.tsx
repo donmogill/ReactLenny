@@ -59,7 +59,7 @@ const ShowForm = ({ show, submitHandler  }: Args) => {
                 <DatePicker name="date" 
                     dateFormat="yyyy-MM-dd"                     
                     selected = {new Date(`${showState.date}T12:00:00-00:00`)}                    
-                    onChange={(date) => setShowState({ ...showState, date: date.toISOString().split('T')[0]  })} />
+                    onChange={(date) => setShowState({ ...showState, date: date && date.toISOString().split('T')[0]   })} />
             </div>  
             <div className="form-group">
                 <label htmlFor="time">Time</label>
