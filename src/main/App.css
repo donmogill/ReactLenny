@@ -222,7 +222,7 @@
   }
   .stopWithDelete
   {
-    grid-template-columns:204px 1fr 100px auto;
+    grid-template-columns:204px 1fr 80px 80px 80px;
   }
   .stop-num{
     font-family:'Space Mono', monospace;

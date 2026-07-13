@@ -4,15 +4,17 @@ import { Venue } from "../types/venue";
 import { useFetchVenues } from "../hooks/ShowHooks";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 
 type Args = {
     show: Show;
-    submitHandler: (show: Show) => void;
-    returnToList: () => void;    
+    submitHandler: (show: Show) => void;       
 }
 
-const ShowForm = ({ show, submitHandler, returnToList }: Args) => {
+const ShowForm = ({ show, submitHandler  }: Args) => {
+
+    const navigate = useNavigate();
 
     const [showState, setShowState] = useState({...show});
     
@@ -22,6 +24,8 @@ const ShowForm = ({ show, submitHandler, returnToList }: Args) => {
         e.preventDefault();
         submitHandler(showState);
     };    
+
+    const cancelReturnToList = () => { navigate("/upcomingShows/admin")  }  
 
     return (
         <form className="addShowForm">
@@ -46,7 +50,7 @@ const ShowForm = ({ show, submitHandler, returnToList }: Args) => {
                         onChange={(e) => setShowState({ ...showState, VenueId: Number(e.target.value) })}>
                     <option value="">--Please choose one--</option>
                     {venues && venues.map((venue: Venue) => (            
-                        <option value={venue.id}>{venue.name}</option>
+                        <option key={venue.id} value={venue.id}>{venue.name}</option>
                     ))}        
                     </select>
                 </label>
@@ -72,7 +76,7 @@ const ShowForm = ({ show, submitHandler, returnToList }: Args) => {
             </button>  
             <button
                 className="btn btn-secondary"                
-                onClick={returnToList}>Cancel
+                onClick={cancelReturnToList}>Cancel
             </button>  
             </div>
         </form>

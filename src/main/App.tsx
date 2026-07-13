@@ -7,6 +7,7 @@ import PicAdd from '../pic/PicAdd'
 import Nav from './Nav'
 import UpcomingShowList from '../show/UpcomingShowList'
 import ShowAdd from '../show/ShowAdd'
+import ShowEdit from '../show/ShowEdit'
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
       <Route path="/pic/add" element={<PicAdd />} />
       <Route path="/upcomingshows/:user" element={<UpcomingShowList />} />
       <Route path="/show/add" element={<ShowAdd />} />
+      <Route path="/show/edit/:id" element={<ShowEdit />}></Route>
     </Routes>        
     </BrowserRouter>
   )

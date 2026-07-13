@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useDeleteShow } from "../hooks/ShowHooks";
 import { Show } from "../types/show";
 import TimeConverter from "./TimeConverter";
@@ -10,6 +11,7 @@ type Args = {
 const UpcomingShow = ({show, user}:Args) => {
 
     const deleteShowMutation = useDeleteShow();
+    const nav = useNavigate();
 
     const date = new Date(show.date);
     const niceDate = date.toLocaleDateString('en-US');
@@ -21,10 +23,18 @@ const UpcomingShow = ({show, user}:Args) => {
         <div className={user == "admin" ? "stop stopWithDelete" : "stop"} key={show.id}>
                 <span className="stop-date mono">{niceDate} {niceTime} </span>
                 <div className="stop-info">
-                <span className="venue">{show.venue.name}</span>
-                <span className="note">{show.venue.address}</span>
+                <span className="venue">{show.venue && show.venue.name}</span>
+                <span className="note">{show.venue && show.venue.address}</span>
                 </div>
                 <span className="stop-tag">No cover!</span>
+                {user == "admin" && 
+                    <button 
+                        className="editImageButton btn-danger"
+                        onClick={() => {                                
+                                   nav(`/show/edit/${show.id}`);                            
+                            }}>
+                        Edit</button>
+                }
                 {user == "admin" && 
                     <button 
                         className="deleteImageButton btn-danger"

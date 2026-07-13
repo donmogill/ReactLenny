@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import ApiStatus from "../ApiStatus";
-import useFetchShows from "../hooks/ShowHooks";
+import {useFetchShows} from "../hooks/ShowHooks";
 import { Show } from "../types/show";
 import UpcomingShowDetail from "./UpcomingShowDetail"
 

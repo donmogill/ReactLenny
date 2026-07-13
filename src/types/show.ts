@@ -5,6 +5,6 @@ export type Show = {
     BandName: string;
     VenueId: number;
     venue?: Venue;
-    date: Date;
+    date: Date | string;
     time: string; 
 };

@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useAddShow } from "../hooks/ShowHooks";
 import { Show } from "../types/show"
 import ValidationSummary from "../ValidationSummary";
@@ -7,7 +6,7 @@ import ShowForm from "./ShowForm";
 
 const ShowAdd = () => {
     const addShowMutation = useAddShow();
-    const navigate = useNavigate();
+    
     
     const today = new Date();
     const todayStringNice = today.toISOString().split('T')[0];    
@@ -18,11 +17,7 @@ const ShowAdd = () => {
         VenueId:0,
         date:todayStringNice,
         time:"21:00:00"
-    };
-
-    const returnToList = () => {
-     navigate("/upcomingShows/admin");
-  }  
+    };     
 
     return (
         <>
@@ -32,8 +27,7 @@ const ShowAdd = () => {
         <h1 className="addShowTitle">Add New Show</h1>
         <ShowForm
             show={show}
-            submitHandler={(show: Show) => addShowMutation.mutate(show)}
-            returnToList = {returnToList}            
+            submitHandler={(show: Show) => addShowMutation.mutate(show)}                      
         />
         </>
     );
