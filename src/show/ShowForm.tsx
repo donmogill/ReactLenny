@@ -6,7 +6,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
-
 type Args = {
     show: Show;
     submitHandler: (show: Show) => void;       
@@ -17,7 +16,7 @@ const ShowForm = ({ show, submitHandler  }: Args) => {
     const navigate = useNavigate();
 
     const [showState, setShowState] = useState({...show});
-    
+
     const {data:venues} = useFetchVenues();
 
     const onSubmit: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
@@ -35,9 +34,9 @@ const ShowForm = ({ show, submitHandler  }: Args) => {
                     type="text"
                     id="BandName"
                     className="form-control"
-                    value={showState.BandName}
+                    value={showState.bandName}
                     onChange={(e) =>
-                        setShowState({ ...showState, BandName: e.target.value })
+                        setShowState({ ...showState, bandName: e.target.value })
                     }
                 />
             </div>   
@@ -46,8 +45,8 @@ const ShowForm = ({ show, submitHandler  }: Args) => {
                     Venue
                     <select 
                         name="venue"
-                        value={showState.VenueId} 
-                        onChange={(e) => setShowState({ ...showState, VenueId: Number(e.target.value) })}>
+                        value={showState.venueId} 
+                        onChange={(e) => setShowState({ ...showState, venueId: Number(e.target.value) })}>
                     <option value="">--Please choose one--</option>
                     {venues && venues.map((venue: Venue) => (            
                         <option key={venue.id} value={venue.id}>{venue.name}</option>
@@ -59,19 +58,19 @@ const ShowForm = ({ show, submitHandler  }: Args) => {
                 <label htmlFor="date">Date</label>
                 <DatePicker name="date" 
                     dateFormat="yyyy-MM-dd"                     
-                    selected = {showState.date}
+                    selected = {new Date(`${showState.date}T12:00:00-00:00`)}                    
                     onChange={(date) => setShowState({ ...showState, date: date.toISOString().split('T')[0]  })} />
             </div>  
             <div className="form-group">
                 <label htmlFor="time">Time</label>
-                <input value={showState.Time} name="time" aria-label="Time" type="time"  onChange={(e) =>
-                        setShowState({ ...showState, Time: e.target.value })
+                <input value={showState.time} name="time" aria-label="Time" type="time"  onChange={(e) =>
+                        setShowState({ ...showState, time: e.target.value })
                     }/>
             </div>   
             <div className="addShowButtons navlinks">
             <button
                 className="btn btn-primary"
-                disabled={!showState.BandName}
+                disabled={!showState.bandName}
                 onClick={onSubmit}>Submit
             </button>  
             <button

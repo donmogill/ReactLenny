@@ -11,7 +11,7 @@ const ShowEdit = () => {
     if (!id) throw Error("Need a show id");
     const { data, status, isSuccess } = useFetchShow(parseInt(id));
     const editShowMutation = useUpdateShow();
-    
+
     if (!isSuccess) return <ApiStatus status={status} />;        
 
     return (
