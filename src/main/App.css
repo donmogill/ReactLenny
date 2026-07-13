@@ -224,6 +224,11 @@
   {
     grid-template-columns:204px 1fr 80px 80px 80px;
   }
+
+  .stopVenue
+  {
+      grid-template-columns:200px 200px 200px;  
+  }
   .stop-num{
     font-family:'Space Mono', monospace;
     font-size:13px;

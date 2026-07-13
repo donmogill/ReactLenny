@@ -8,6 +8,7 @@ import Nav from './Nav'
 import UpcomingShowList from '../show/UpcomingShowList'
 import ShowAdd from '../show/ShowAdd'
 import ShowEdit from '../show/ShowEdit'
+import VenueList from '../show/VenueList'
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
       <Route path="/upcomingshows/:user" element={<UpcomingShowList />} />
       <Route path="/show/add" element={<ShowAdd />} />
       <Route path="/show/edit/:id" element={<ShowEdit />}></Route>
+      <Route path="/venues" element={<VenueList />}></Route>
     </Routes>        
     </BrowserRouter>
   )

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDeleteShow } from "../hooks/ShowHooks";
 import { Show } from "../types/show";
 import TimeConverter from "./TimeConverter";
+import DateConverter from "./DateConverter";
 
 type Args = {
   show:Show,
@@ -13,12 +14,13 @@ const UpcomingShow = ({show, user}:Args) => {
     const deleteShowMutation = useDeleteShow();
     const nav = useNavigate();
     
-    const niceTime = TimeConverter(show.time)
+    const niceDate = DateConverter(show.date);
+    const niceTime = TimeConverter(show.time);    
 
     return (
         <>
         <div className={user == "admin" ? "stop stopWithDelete" : "stop"} key={show.id}>
-                <span className="stop-date mono">{show.date} {niceTime} </span>
+                <span className="stop-date mono">{niceDate} {niceTime} </span>
                 <div className="stop-info">
                 <span className="venue">{show.venue && show.venue.name}</span>
                 <span className="note">{show.venue && show.venue.address}</span>

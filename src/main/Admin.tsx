@@ -10,8 +10,9 @@ const Admin = () => {
     
     <div className="navlinks">
         <Link to="/pics">Edit Main Page Pics</Link>
-        <Link to="/itinerary">Edit Videos</Link>        
         <Link to="/upcomingShows/admin">Edit Gigs</Link>        
+        <Link to="/venues">Edit Venues</Link>        
+        <Link to="/itinerary">Edit Videos</Link>        
         <Link to="/itinerary">Logout</Link>
     </div>    
     </div>
