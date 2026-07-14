@@ -5,6 +5,8 @@ import { useFetchVenues } from "../hooks/VenueHooks";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
+import { useFetchBands } from "../hooks/BandHooks";
+import { Band } from "../types/band";
 
 type Args = {
     show: Show;
@@ -18,6 +20,7 @@ const ShowForm = ({ show, submitHandler  }: Args) => {
     const [showState, setShowState] = useState({...show});
 
     const {data:venues} = useFetchVenues();
+    const {data:bands} = useFetchBands();
 
     const onSubmit: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
         e.preventDefault();
@@ -29,16 +32,18 @@ const ShowForm = ({ show, submitHandler  }: Args) => {
     return (
         <form className="addShowForm">
             <div className="form-group">
-                <label htmlFor="BandName">Band Name</label>
-                <input
-                    type="text"
-                    id="BandName"
-                    className="form-control"
-                    value={showState.bandName}
-                    onChange={(e) =>
-                        setShowState({ ...showState, bandName: e.target.value })
-                    }
-                />
+                <label>
+                    Band
+                    <select 
+                        name="band"
+                        value={showState.bandId} 
+                        onChange={(e) => setShowState({ ...showState, bandId: Number(e.target.value) })}>
+                    <option value="">--Please choose one--</option>
+                    {bands && bands.map((band: Band) => (            
+                        <option key={band.id} value={band.id}>{band.name}</option>
+                    ))}        
+                    </select>
+                </label>
             </div>   
             <div className="form-group">
                 <label>

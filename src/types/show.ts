@@ -2,7 +2,7 @@ import { Venue } from "./venue";
 
 export type Show = {
     id: number;
-    bandName: string;
+    bandId: number;
     venueId: number;
     venue?: Venue;
     date: string;

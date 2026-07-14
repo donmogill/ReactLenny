@@ -9,7 +9,7 @@ const useFetchShows = (bandId: number) => {
     return useQuery<Show[], AxiosError>({
         queryKey: ["shows"],
         queryFn: () => 
-            axios.get(`${config.baseApiUrl}/api/shows${bandId}`).then((resp) => resp.data),
+            axios.get(`${config.baseApiUrl}/api/Show/GetShows/${bandId}`).then((resp) => resp.data),
         
     });
 };  
@@ -18,7 +18,7 @@ const useFetchShow = (id: number) => {
   return useQuery<Show, AxiosError>({
     queryKey: ["shows", id],
     queryFn: () =>
-      axios.get(`${config.baseApiUrl}/api/shows/${id}`).then((resp) => resp.data),
+      axios.get(`${config.baseApiUrl}/api/Show/GetOneShow/${id}`).then((resp) => resp.data),
   });
 };
 
@@ -26,7 +26,7 @@ const useAddShow = () => {
   const queryClient = useQueryClient();
   const nav = useNavigate();
   return useMutation<AxiosResponse, AxiosError<Problem>, Show>({
-    mutationFn: (s:Show) => axios.post(`${config.baseApiUrl}/api/shows`, s),
+    mutationFn: (s:Show) => axios.post(`${config.baseApiUrl}/api/Show/Add`, s),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["shows"] });
       nav("/upcomingShows/admin");

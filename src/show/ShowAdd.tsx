@@ -8,13 +8,13 @@ const ShowAdd = () => {
     const addShowMutation = useAddShow();
     
     
-    const today = new Date();
-    const todayStringNice = today.toISOString().split('T')[0];    
+    const todayStringNice = new Date().toISOString().split('T')[0]; 
+    
 
     const show: Show = {
         id: 0,
-        BandName: "",
-        VenueId:0,
+        bandId: 0,
+        venueId:0,
         date:todayStringNice,
         time:"21:00:00"
     };     
