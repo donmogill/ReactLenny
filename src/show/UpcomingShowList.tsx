@@ -15,10 +15,12 @@ const UpcomingShowList = () => {
 
     return(
         
-        <div className="bands">
+        <div className="shows">
+            <div className="section-tag subHeader">Where they're playing</div>
+                
             {bands && bands.map((band: Band) => (            
             <>
-            
+                <h2>{band.name}</h2>
                 <BandDetail user={user} band={band} key={band.id}/>
             </>
             ))}                    

@@ -1,4 +1,4 @@
-import { useAddVenue } from "../hooks/ShowHooks";
+import { useAddVenue } from "../hooks/VenueHooks";
 import ValidationSummary from "../ValidationSummary";
 import {Venue} from "../types/venue";
 import VenueForm from "./VenueForm";

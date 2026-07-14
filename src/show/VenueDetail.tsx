@@ -1,4 +1,4 @@
-import { useDeleteVenue } from "../hooks/ShowHooks";
+import { useDeleteVenue } from "../hooks/VenueHooks";
 import { Venue } from "../types/venue";
 
 type Args = {

@@ -1,7 +1,7 @@
-import { useAddBand } from "../hooks/ShowHooks";
+import { useAddBand } from "../hooks/BandHooks";
 import ValidationSummary from "../ValidationSummary";
 import {Band} from "../types/band";
-import BandForm from "./BandForm";
+import BandForm from "./BandForm"
 
 const BandAdd = () => {
     const addBandMutation = useAddBand();

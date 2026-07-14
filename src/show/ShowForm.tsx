@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Show } from "../types/show";
 import { Venue } from "../types/venue";
-import { useFetchVenues } from "../hooks/ShowHooks";
+import { useFetchVenues } from "../hooks/VenueHooks";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";

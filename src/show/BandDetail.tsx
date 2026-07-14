@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFetchShows } from "../hooks/ShowHooks";
 import { Show } from "../types/show";
 import UpcomingShowDetail from "./UpcomingShowDetail";
@@ -20,8 +20,8 @@ const BandDetail = ({band, user}:Args) => {
         
     return (
         <div className="shows">
-           <div className="section-tag">Where they're playing</div>
-           <h2>{band.name}</h2>           
+           
+                      
 
             {shows && shows.map((show: Show) => (            
                 <UpcomingShowDetail user={user} show={show} key={show.id}/>

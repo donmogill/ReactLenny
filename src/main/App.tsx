@@ -10,6 +10,8 @@ import ShowAdd from '../show/ShowAdd'
 import ShowEdit from '../show/ShowEdit'
 import VenueList from '../show/VenueList'
 import VenueAdd from '../show/VenueAdd'
+import BandList from '../show/BandList'
+import BandAdd from '../show/BandAdd'
 
 function App() {
   
@@ -19,14 +21,19 @@ function App() {
     <Admin/>
     <Routes>
       <Route path="/" element={<Hero />} />
-      <Route path="/itinerary" element={<Itinerary />} />
+
       <Route path="/pics" element={<PicList />} />
       <Route path="/pic/add" element={<PicAdd />} />
+
       <Route path="/upcomingshows/:user" element={<UpcomingShowList />} />
       <Route path="/show/add" element={<ShowAdd />} />
       <Route path="/show/edit/:id" element={<ShowEdit />}></Route>
+
       <Route path="/venues" element={<VenueList />}></Route>
       <Route path="/venue/add" element={<VenueAdd />} />
+
+      <Route path="/bands" element={<BandList />}></Route>
+      <Route path="/band/add" element={<BandAdd />} />
     </Routes>        
     </BrowserRouter>
   )

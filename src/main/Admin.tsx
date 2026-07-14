@@ -13,6 +13,7 @@ const Admin = () => {
         <Link to="/upcomingShows/admin">Edit Gigs</Link>        
         <Link to="/venues">Edit Venues</Link>        
         <Link to="/itinerary">Edit Videos</Link>        
+        <Link to="/bands">Edit Bands</Link>        
         <Link to="/itinerary">Logout</Link>
     </div>    
     </div>

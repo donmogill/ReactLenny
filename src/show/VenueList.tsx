@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ApiStatus from "../ApiStatus";
-import { useFetchVenues } from "../hooks/ShowHooks";
+import { useFetchVenues } from "../hooks/VenueHooks";
 import { Venue } from "../types/venue";
 import VenueDetail from "./VenueDetail";
 
