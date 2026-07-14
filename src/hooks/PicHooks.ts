@@ -83,7 +83,7 @@ const useUploadPic = () => {
         formData.append('file', fileToUpload);
 
       
-        const response = await fetch(`${config.baseApiUrl}/api/Upload`, {
+        const response = await fetch(`${config.baseApiUrl}/api/pic`, {
             method: 'POST',
             body: formData        
         });

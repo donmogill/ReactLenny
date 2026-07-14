@@ -9,6 +9,7 @@ import UpcomingShowList from '../show/UpcomingShowList'
 import ShowAdd from '../show/ShowAdd'
 import ShowEdit from '../show/ShowEdit'
 import VenueList from '../show/VenueList'
+import VenueAdd from '../show/VenueAdd'
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
       <Route path="/show/add" element={<ShowAdd />} />
       <Route path="/show/edit/:id" element={<ShowEdit />}></Route>
       <Route path="/venues" element={<VenueList />}></Route>
+      <Route path="/venue/add" element={<VenueAdd />} />
     </Routes>        
     </BrowserRouter>
   )

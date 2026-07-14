@@ -4,7 +4,6 @@ import config from "../config/config";
 import { Show } from "../types/show";
 import { useNavigate } from "react-router-dom";
 import Problem from "../types/problem";
-import { Venue } from "../types/venue";
 
 const useFetchShows = () => {
     return useQuery<Show[], AxiosError>({
@@ -22,15 +21,6 @@ const useFetchShow = (id: number) => {
       axios.get(`${config.baseApiUrl}/api/shows/${id}`).then((resp) => resp.data),
   });
 };
-
-const useFetchVenues = () => {
-    return useQuery<Venue[], AxiosError>({
-        queryKey: ["venues"],
-        queryFn: () => 
-            axios.get(`${config.baseApiUrl}/api/venues`).then((resp) => resp.data),
-        
-    });
-};  
 
 const useAddShow = () => {
   const queryClient = useQueryClient();
@@ -71,4 +61,6 @@ const useUpdateShow = () => {
 };
 
 
-export {useFetchShows, useDeleteShow, useAddShow, useFetchVenues, useFetchShow, useUpdateShow}
+
+
+export { useFetchShows, useDeleteShow, useAddShow, useFetchShow, useUpdateShow }

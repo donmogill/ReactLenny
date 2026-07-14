@@ -227,7 +227,7 @@
 
   .stopVenue
   {
-      grid-template-columns:200px 200px 200px;  
+      grid-template-columns:475px 200px 200px 100px;  
   }
   .stop-num{
     font-family:'Space Mono', monospace;
@@ -498,4 +498,10 @@
 {
   width: 200px;
   display: block;
+}
+
+.addButton
+{
+  margin-top:20px;
+  text-align: left;
 }

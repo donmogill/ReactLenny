@@ -14,13 +14,13 @@ const VenueList = () =>
     return(
         
         <div className="shows">
-            <h2>Venues</h2>           
+            <h1>Venues</h1>           
+            <div className="addButton">
+            <Link  to="/venue/add">Add Venue</Link>
+            </div>
             {data && data.map((venue: Venue) => (            
             <VenueDetail venue={venue} key={venue.id}/>
             ))}        
-            { 
-                <Link to="/venue/add">Add Show</Link>
-            }
         </div>
        
     )
