@@ -20,7 +20,6 @@ const UpcomingShowList = () => {
                 
             {bands && bands.map((band: Band) => (            
             <>
-                <h2>{band.name}</h2>
                 <BandDetail user={user} band={band} key={band.id}/>
             </>
             ))}                    

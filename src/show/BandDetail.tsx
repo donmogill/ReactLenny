@@ -12,7 +12,7 @@ type Args = {
 
 const BandDetail = ({band, user}:Args) => {
 
-    const { data: shows, status, isSuccess } = useFetchShows();
+    const { data: shows, status, isSuccess } = useFetchShows(band.id);
 
     if (!isSuccess) 
         return <ApiStatus status={status} />;    
@@ -20,9 +20,7 @@ const BandDetail = ({band, user}:Args) => {
         
     return (
         <div className="shows">
-           
-                      
-
+            <h2>{band.name}</h2>
             {shows && shows.map((show: Show) => (            
                 <UpcomingShowDetail user={user} show={show} key={show.id}/>
             ))}        

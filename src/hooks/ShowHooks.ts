@@ -5,11 +5,11 @@ import { Show } from "../types/show";
 import { useNavigate } from "react-router-dom";
 import Problem from "../types/problem";
 
-const useFetchShows = () => {
+const useFetchShows = (bandId: number) => {
     return useQuery<Show[], AxiosError>({
         queryKey: ["shows"],
         queryFn: () => 
-            axios.get(`${config.baseApiUrl}/api/shows`).then((resp) => resp.data),
+            axios.get(`${config.baseApiUrl}/api/shows${bandId}`).then((resp) => resp.data),
         
     });
 };  
